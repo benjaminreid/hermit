@@ -18,7 +18,7 @@ The only dependencies you’ll need to install are for working with and building
 yarn install
 ```
 
-## Development
+## Getting started
 
 A [Browsersync](https://browsersync.io/) server is provided out of the box so you can get coding in the browser quickly.
 
@@ -36,6 +36,6 @@ After you’ve built your site, take the `dist` folder and upload it to your hos
 yarn run build
 ```
 
-## Tools
+## Don’t forget
 
-- Generate a favicon - https://favicon.io/
+- Generate your own favicons, [favicon.io](https://favicon.io/) is a great place to do this.
