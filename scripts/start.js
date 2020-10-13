@@ -1,16 +1,25 @@
 const bs = require("browser-sync").create();
 const fs = require("fs-extra");
+const { buildHTML, buildCSS, outputDirectory } = require("./shared");
 
-bs.watch("src/index.html", async (event) => {
-  if (event === "change") {
-    const index = await fs.readFile("src/index.html");
-    await fs.outputFile("dist/index.html", index);
-  }
-});
+async function run() {
+  await fs.emptyDir(outputDirectory);
 
-bs.watch("./dist/index.html").on("change", bs.reload);
+  await buildHTML();
+  await buildCSS();
 
-bs.init({
-  server: "dist",
-  open: false,
-});
+  bs.watch("src/index.html", async (event) => {
+    if (event === "change") {
+      await buildHTML();
+    }
+  });
+
+  bs.watch(`${outputDirectory}/index.html`).on("change", bs.reload);
+
+  bs.init({
+    server: outputDirectory,
+    open: false,
+  });
+}
+
+run();
