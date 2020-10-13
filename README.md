@@ -4,7 +4,7 @@ Hermit is a small back-to-basics starting point for single page static websites.
 
 It provides a fast and painless developer experience with live reloading from [Browsersync](https://browsersync.io/) and utility-first CSS support from [Tailwind](https://tailwindcss.com/) so you can iterate quickly and ship as little code as possible to your visitors.
 
-*No build tools or packagers* (sort of). There are two small easy to read scripts (one for development and one for building) that you can completely ignore but adapt if want to.
+*No build tools or packagers* (sort of). There are two small easy to read scripts (one for [development](scripts/start.js) and one for [building](scripts/build.js)) that you can completely ignore but adapt if want to.
 
 [PostCSS](https://postcss.org/) handles the processing of the CSS so you can easily extend it as you might need and [cssnano](https://cssnano.co/) is there for you when you build your site.
 
