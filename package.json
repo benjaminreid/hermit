@@ -6,9 +6,11 @@
   "author": "Benjamin Reid <benjaminreid.nouveller@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "NODE_ENV=production node scripts/build.js"
+    "build": "NODE_ENV=production node scripts/build.js",
+    "start": "node scripts/start.js"
   },
   "dependencies": {
+    "browser-sync": "^2.26.12",
     "fs-extra": "^9.0.1",
     "postcss": "^8.1.1",
     "tailwindcss": "^1.9.1"
