@@ -1,0 +1,16 @@
+{
+  "name": "one-page-starter",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:benjaminreid/one-page-starter.git",
+  "author": "Benjamin Reid <benjaminreid.nouveller@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "NODE_ENV=production node scripts/build.js"
+  },
+  "dependencies": {
+    "fs-extra": "^9.0.1",
+    "postcss": "^8.1.1",
+    "tailwindcss": "^1.9.1"
+  }
+}
