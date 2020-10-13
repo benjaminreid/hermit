@@ -30,7 +30,20 @@ async function buildCSS() {
   }
 }
 
+async function copyStaticAssets() {
+  const assets = ["favicon.ico", "apple-touch-icon.png"].map(
+    (file) => `${inputDirectory}/${file}`
+  );
+
+  return Promise.all([
+    ...assets.map((file) =>
+      fs.copy(file, file.replace(inputDirectory, outputDirectory))
+    ),
+  ]);
+}
+
 module.exports.inputDirectory = inputDirectory;
 module.exports.outputDirectory = outputDirectory;
 module.exports.buildHTML = buildHTML;
 module.exports.buildCSS = buildCSS;
+module.exports.copyStaticAssets = copyStaticAssets;

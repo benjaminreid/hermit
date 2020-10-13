@@ -1,10 +1,16 @@
 const bs = require("browser-sync").create();
 const fs = require("fs-extra");
-const { buildHTML, buildCSS, outputDirectory } = require("./shared");
+const {
+  buildHTML,
+  buildCSS,
+  copyStaticAssets,
+  outputDirectory,
+} = require("./shared");
 
 async function run() {
   await fs.emptyDir(outputDirectory);
 
+  await copyStaticAssets();
   await buildHTML();
   await buildCSS();
 
