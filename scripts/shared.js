@@ -1,6 +1,6 @@
 const postcss = require("postcss");
-const tailwind = require("tailwindcss");
 const fs = require("fs-extra");
+const postCSSConfig = require("../postcss.config");
 
 const inputDirectory = "src";
 const outputDirectory = "dist";
@@ -18,7 +18,7 @@ async function buildCSS() {
 
   const CSSFile = await fs.readFile(inputCSSFilePath);
 
-  const result = await postcss([tailwind]).process(CSSFile, {
+  const result = await postcss(postCSSConfig.plugins).process(CSSFile, {
     from: inputCSSFilePath,
     to: outputCSSFilePath,
   });

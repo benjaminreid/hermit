@@ -4,6 +4,7 @@ const {
   buildHTML,
   buildCSS,
   copyStaticAssets,
+  inputDirectory,
   outputDirectory,
 } = require("./shared");
 
@@ -14,7 +15,7 @@ async function run() {
   await buildHTML();
   await buildCSS();
 
-  bs.watch("src/index.html", async (event) => {
+  bs.watch(`${inputDirectory}/index.html`, async (event) => {
     if (event === "change") {
       await buildHTML();
     }
