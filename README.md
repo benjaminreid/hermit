@@ -1,4 +1,4 @@
-# Hermit
+# :crab: Hermit
 
 ## Installation
 
