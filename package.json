@@ -1,8 +1,8 @@
 {
-  "name": "one-page-starter",
-  "version": "0.1.0",
+  "name": "hermit",
+  "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:benjaminreid/one-page-starter.git",
+  "repository": "git@github.com:benjaminreid/hermit.git",
   "author": "Benjamin Reid <benjaminreid.nouveller@gmail.com>",
   "license": "MIT",
   "scripts": {
