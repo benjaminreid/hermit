@@ -1,4 +1,22 @@
-# one-page-starter
+# Hermit
+
+## Installation
+
+```
+yarn install
+```
+
+## Development
+
+```
+yarn run start
+```
+
+## Building
+
+```
+yarn run build
+```
 
 ## Tools
 
