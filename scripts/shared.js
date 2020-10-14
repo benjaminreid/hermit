@@ -35,8 +35,18 @@ async function copyStaticAssets() {
     (file) => `${inputDirectory}/${file}`
   );
 
+  const filesAndFolders = await fs.readdir(inputDirectory, {
+    withFileTypes: true,
+  });
+  const folders = filesAndFolders
+    .filter(
+      (fileOrFolder) =>
+        fileOrFolder.isDirectory() && fileOrFolder.name !== "css"
+    )
+    .map((folder) => `${inputDirectory}/${folder.name}`);
+
   return Promise.all([
-    ...assets.map((file) =>
+    ...[...assets, ...folders].map((file) =>
       fs.copy(file, file.replace(inputDirectory, outputDirectory))
     ),
   ]);
