@@ -1,5 +1,6 @@
 const postcss = require("postcss");
 const fs = require("fs-extra");
+const minify = require("html-minifier").minify;
 const postCSSConfig = require("../postcss.config");
 
 const inputDirectory = "src";
@@ -8,7 +9,15 @@ const outputDirectory = "dist";
 async function buildHTML() {
   const file = "index.html";
   const index = await fs.readFile(`${inputDirectory}/${file}`);
-  await fs.outputFile(`${outputDirectory}/${file}`, index);
+  let html = index.toString();
+
+  if (process.env.NODE_ENV === "production") {
+    html = minify(html, {
+      collapseWhitespace: true,
+    });
+  }
+
+  await fs.outputFile(`${outputDirectory}/${file}`, html);
 }
 
 async function buildCSS() {
