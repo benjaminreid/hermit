@@ -1,12 +1,13 @@
 const postcss = require("postcss");
 const fs = require("fs-extra");
 const minify = require("html-minifier").minify;
+const sum = require("hash-sum");
 const postCSSConfig = require("../postcss.config");
 
 const inputDirectory = "src";
 const outputDirectory = "dist";
 
-async function buildHTML() {
+async function buildHTML({ CSSFileName } = { CSSFileName: null }) {
   const file = "index.html";
   const index = await fs.readFile(`${inputDirectory}/${file}`);
   let html = index.toString();
@@ -15,17 +16,28 @@ async function buildHTML() {
     html = minify(html, {
       collapseWhitespace: true,
     });
+
+    if (CSSFileName !== null) {
+      html = html.replace("styles.css", CSSFileName);
+    }
   }
 
   await fs.outputFile(`${outputDirectory}/${file}`, html);
 }
 
 async function buildCSS() {
-  const file = "styles.css";
-  const inputCSSFilePath = `${inputDirectory}/css/${file}`;
-  const outputCSSFilePath = `${outputDirectory}/css/${file}`;
+  const inputFileName = "styles.css";
+  let outputFileName = "styles.css";
+  const inputCSSFilePath = `${inputDirectory}/css/${inputFileName}`;
 
   const CSSFile = await fs.readFile(inputCSSFilePath);
+
+  if (process.env.NODE_ENV === "production") {
+    const content = CSSFile.toString();
+    outputFileName = `${sum(content + new Date())}.css`;
+  }
+
+  const outputCSSFilePath = `${outputDirectory}/css/${outputFileName}`;
 
   const result = await postcss(postCSSConfig.plugins).process(CSSFile, {
     from: inputCSSFilePath,
@@ -37,6 +49,8 @@ async function buildCSS() {
   if (result.map) {
     await fs.outputFile(`${outputCSSFilePath}.map`, result.map);
   }
+
+  return outputFileName;
 }
 
 async function copyStaticAssets() {
