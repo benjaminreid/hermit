@@ -9,8 +9,8 @@ const {
 async function run() {
   await fs.emptyDir(outputDirectory);
   await copyStaticAssets();
-  await buildCSS();
-  await buildHTML();
+  const hashedFileName = await buildCSS();
+  await buildHTML({ CSSFileName: hashedFileName });
 }
 
 run();
