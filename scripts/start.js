@@ -21,7 +21,10 @@ async function run() {
     }
   });
 
-  bs.watch(`${outputDirectory}/index.html`).on("change", bs.reload);
+  bs.watch(`${outputDirectory}/index.html`).on("change", async () => {
+    await buildCSS();
+    bs.reload();
+  });
 
   bs.watch(`${inputDirectory}/css/styles.css`).on("change", async () => {
     await buildCSS();

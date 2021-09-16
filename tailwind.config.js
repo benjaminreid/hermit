@@ -1,10 +1,5 @@
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-    defaultLineHeights: true,
-    standardFontWeights: true,
-  },
+  mode: "jit",
   purge: ["./src/index.html"],
   theme: {
     extend: {},
