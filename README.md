@@ -28,7 +28,7 @@ yarn run start
 
 ## Building
 
-Once you’re all done, it’s time to build your site. The proivded build command purges all the CSS you haven’t used from [Tailwind](https://tailwindcss.com/) and additionally compresses it with [cssnano](https://cssnano.co/).
+Once you’re all done, it’s time to build your site. The proivded `build` command minifies your HTML, purges unused CSS, compresses it with [cssnano](https://cssnano.co/) and the CSS file name is automatically cache busted.
 
 After you’ve built your site, take the `dist` folder and upload it to your host of choice.
 
